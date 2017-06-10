@@ -24,20 +24,29 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1> ToDo List ( Luis Sandino Ruiz )</h1>
         </div>
-        <div>
-          <h3>Enter a new task</h3>
+        <div className="mainContent">
+          <h2>Enter a new task</h2>
           <EnterTask updateList={this.updateList} />
-          <TaskList tasks= {this.state.myTasks} remove={this.removeTask} />
+          <TaskList tasks={this.state.myTasks} remove={this.removeTask} />
         </div>
       </div>
     );
   }
   updateList = (infoTask) => {
-    const updatedTasks = this.state.myTasks;
-    updatedTasks.push(infoTask);
-    this.setState({
-      tasks: updatedTasks,
-    });
+    if (infoTask === '') {
+      const updatedTasks = this.state.myTasks;
+      this.setState({
+        tasks: updatedTasks,
+      });
+
+    } else {
+      const updatedTasks = this.state.myTasks;
+      updatedTasks.push(infoTask);
+      this.setState({
+        tasks: updatedTasks,
+      });
+    }
+
   }
   removeTask = (text) => {
     const updatedTasks = this.state.myTasks;

@@ -13,12 +13,12 @@ export class TaskList extends Component {
 
     render() {
         const items = this.props.tasks.map((e, k) => {
-            return <li key={k}><span>{e} </span><button onClick={this.remove}>Delete</button></li>
+            return <li key={k}><span>{e} </span><button onClick={this.remove}>Delete</button><hr /></li>
         });
         return (
-            <ul>
+            <ol>
                 {items}
-            </ul>
+            </ol>
         );
     }
 }

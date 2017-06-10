@@ -2,18 +2,25 @@ import React, { Component } from 'react';
 
 
 export class TaskList extends Component {
-   
+
+
+
+
+    remove = (e) => {
+        const elementToErase = e.target.parentNode.querySelector('span').innerText;
+        this.props.remove(elementToErase);
+    }
 
     render() {
         const items = this.props.tasks.map((e, k) => {
-            return <li key={k}>{e} <button onClick={this.remove}>Delete</button></li>
+            return <li key={k}><span>{e} </span><button onClick={this.remove}>Delete</button></li>
         });
         return (
             <ul>
-               {items}
+                {items}
             </ul>
         );
     }
 }
 
-export default TaskList;
+export default TaskList;  

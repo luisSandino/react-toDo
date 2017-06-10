@@ -10,19 +10,13 @@ class App extends Component {
   constructor(props) {
     super();
     this.state = {
-      tasks: props.tasks,
+      myTasks: props.initialTasks,
 
     };
 
   }
 
-  updateList = (infoTask) => {
-    const updatedTasks = this.state.tasks;
-    updatedTasks.push(infoTask);
-    this.setState({
-      tasks: updatedTasks
-    });
-  }
+
   render() {
     return (
       <div className="App">
@@ -32,11 +26,25 @@ class App extends Component {
         </div>
         <div>
           <h3>Enter a new task</h3>
-          <EnterTask updateList={ this.updateList } />
-          <TaskList tasks={ this.state.tasks } />
+          <EnterTask updateList={this.updateList} />
+          <TaskList tasks= {this.state.myTasks} remove={this.removeTask} />
         </div>
       </div>
     );
+  }
+  updateList = (infoTask) => {
+    const updatedTasks = this.state.myTasks;
+    updatedTasks.push(infoTask);
+    this.setState({
+      tasks: updatedTasks,
+    });
+  }
+  removeTask = (text) => {
+    const updatedTasks = this.state.myTasks;
+    updatedTasks.splice(updatedTasks.indexOf(text), 1);
+    this.setState({
+      tasks: updatedTasks,
+    });
   }
 }
 

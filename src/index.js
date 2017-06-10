@@ -6,5 +6,5 @@ import './index.css';
 
 var tasksList = ["Learn ReactJS", "Learn react-native", "Learn ECMAScript 6"];
 
-ReactDOM.render(<App tasks={tasksList} />, document.getElementById('root'));
+ReactDOM.render(<App initialTasks={tasksList} />, document.getElementById('root'));
 registerServiceWorker();

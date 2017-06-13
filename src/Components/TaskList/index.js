@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
+//stores
+//import ToDoStore from '../../stores/ToDo';
+
 
 export class TaskList extends Component {
+    constructor(props){
+        super();
+
+    }
    
     static propTypes = {
-        tasksList : React.PropTypes.array
+        tasksList  : React.PropTypes.array,
+        removeTask : React.PropTypes.func,
     };
    
 
-    remove = (e) => {
-        const elementToErase = e.target.parentNode.querySelector('span').innerText;
-        this.props.remove(elementToErase);
-    }
 
     render() {
-        console.log(this.props)
+        console.log(this.props.removeTask, "holaaaa")
         return (
             <ol>
                 {this.props.tasksList.map((task, index) => {
                     return (
                         <li key={index}>
                             <span>{task} </span>
-                            <button onClick={this.remove}>Delete</button><hr />
+                            <button onClick={this.props.removeTask}>Delete</button><hr />
                         </li>
                     );
                 })}
@@ -28,5 +32,5 @@ export class TaskList extends Component {
         );
     }
 }
-
+//.bind(null, index)
 export default TaskList;  

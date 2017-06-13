@@ -1,20 +1,18 @@
-import { observable, useStrict, extendObservable } from 'mobx';
+import { useStrict, extendObservable, observable } from 'mobx';
 useStrict(true);
-class ToDoStore {
 
+class ToDoStore {
     constructor() {
         extendObservable(this, {
-            tasksList: ['Learn reactJS', 'Learn ES6'],
-            removeTask: removeTask(),
-        })
+            tasksList: [],
+        }) 
     }
 
-    removeTask = (text) => {
-        const updatedTasks = ToDoStore.tasksList;
-        updatedTasks.splice(updatedTasks.indexOf(text), 1);
-        this.setState({
-            tasks: updatedTasks,
-        });
+    removeTask = (taskIndex) => {
+        console.log("Ya me reconoce la funcion de remover task", taskIndex)
+        const updatedTaskList = this.tasksList.splice(taskIndex, 1);
+        this.tasksList = updatedTaskList;
+        console.log("Actual tareas ", updatedTaskList)
     }
 }
 const toDoStore = new ToDoStore();

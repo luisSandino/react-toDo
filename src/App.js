@@ -3,7 +3,7 @@ import logo from './logo.jpg';
 import './App.css';
 import { EnterTask } from './Components/EnterTask/index';
 import { TaskList } from './Components/TaskList/index';
-import {observer} from 'mobx-react';
+
 
 //stores
 import ToDoStore from './stores/ToDo';
@@ -21,7 +21,7 @@ render() {
         <div className="mainContent">
           <h2>Enter a new task</h2>
           <EnterTask updateList={this.updateList} />
-          <TaskList tasksList={ToDoStore.tasksList} remove={this.removeTask} />
+          <TaskList tasksList={ToDoStore.tasksList} removeTask={ToDoStore.removeTask} />
         </div>
       </div>
     );
@@ -35,7 +35,6 @@ render() {
         tasks: updatedTasks,
       });
     }
-
   }
   /*removeTask = (text) => {
     const updatedTasks = ToDoStore.tasksList;

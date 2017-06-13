@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
-
 export class EnterTask extends Component {
 
 
     render() {
         return (
-            <form  onSubmit={this.justAdded} >
+            <form onSubmit={this.justAdded} >
                 <input type="text" id="task" />
             </form>
         );

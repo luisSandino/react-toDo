@@ -3,21 +3,15 @@ import logo from './logo.jpg';
 import './App.css';
 import { EnterTask } from './Components/EnterTask/index';
 import { TaskList } from './Components/TaskList/index';
+import {observer} from 'mobx-react';
 
-
+//stores
+import ToDoStore from './stores/ToDo';
 
 class App extends Component {
-  constructor(props) {
-    super();
-    this.state = {
-      myTasks: props.initialTasks,
 
-    };
-
-  }
-
-
-  render() {
+render() {
+  console.log(ToDoStore)
     return (
       <div className="App">
         <div className="App-header">
@@ -27,20 +21,15 @@ class App extends Component {
         <div className="mainContent">
           <h2>Enter a new task</h2>
           <EnterTask updateList={this.updateList} />
-          <TaskList tasks={this.state.myTasks} remove={this.removeTask} />
+          <TaskList tasksList={ToDoStore.tasksList} remove={this.removeTask} />
         </div>
       </div>
     );
   }
   updateList = (infoTask) => {
-    if (infoTask === '') {
-      const updatedTasks = this.state.myTasks;
-      this.setState({
-        tasks: updatedTasks,
-      });
-
-    } else {
-      const updatedTasks = this.state.myTasks;
+    if (infoTask !== '') {
+      //const updatedTasks = this.state.myTasks;
+      const updatedTasks = ToDoStore.tasksList;
       updatedTasks.push(infoTask);
       this.setState({
         tasks: updatedTasks,
@@ -48,13 +37,13 @@ class App extends Component {
     }
 
   }
-  removeTask = (text) => {
-    const updatedTasks = this.state.myTasks;
+  /*removeTask = (text) => {
+    const updatedTasks = ToDoStore.tasksList;
     updatedTasks.splice(updatedTasks.indexOf(text), 1);
     this.setState({
       tasks: updatedTasks,
     });
-  }
+  }*/
 }
-
 export default App;
+
